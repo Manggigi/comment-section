@@ -5,11 +5,9 @@
 <div class="bg-white p-6 rounded-lg shadow-xl">
 	<div class="flex items-center gap-2">
 		<a href="https://giandenorte.com/" target="_blank">
-			<img class="h-12 w-12 rounded-full" src={'/avatar.webp'} alt="avatar" />
+			<img class="h-12 w-12 rounded-full" src={'/avatar.webp'} alt="Gian Denorte" />
 		</a>
-		<a href="https://giandenorte.com/" target="_blank">
-			<div class="">Gian Denorte</div>
-		</a>
+		<a href="https://giandenorte.com/" target="_blank"> Gian Denorte </a>
 		<div class="text-neutral-400 text-xs">{getTimeAgo('08-30-2000')}</div>
 	</div>
 	<div class="py-4 lg:pt-2 text-neutral-500">
