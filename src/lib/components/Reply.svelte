@@ -55,7 +55,10 @@
 						<!-- edit and delete -->
 						{#if $currentUser.username === reply.user.username}
 							<div class="flex gap-2">
-								<button on:click={() => startEditing(reply.id)} class="flex items-center pr-4">
+								<button
+									on:click={() => startEditing(reply.id)}
+									class="flex items-center pr-4 text-blue-600"
+								>
 									<span class="pr-2">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +67,7 @@
 											stroke-width="2"
 											stroke-linecap="round"
 											stroke-linejoin="round"
-											class="h-5 w-5 fill-[#256e3b]"
+											class="h-4 w-4 fill-[#256e3b]"
 										>
 											<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path
 												d="m15 5 4 4"
@@ -88,7 +91,7 @@
 											stroke-width="2"
 											stroke-linecap="round"
 											stroke-linejoin="round"
-											class="h-5 w-5 fill-[red]"
+											class="h-4 w-4 fill-[red]"
 										>
 											<path d="M3 6h18" />
 											<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -101,14 +104,14 @@
 						{:else}
 							<div class="">
 								<button
-									class="flex items-center"
+									class="flex items-center text-blue-600"
 									on:click={() => {
 										isReplying = !isReplying;
 										currentEditingReplyId = reply.id;
 									}}
 								>
 									<svg
-										class="h-5 w-5 mr-2 fill-[#256e3b]"
+										class="h-4 w-4 mr-2 fill-[#256e3b]"
 										viewBox="-0.5 0 28 28"
 										version="1.1"
 										xmlns="http://www.w3.org/2000/svg"
@@ -236,7 +239,7 @@
 										stroke-width="2"
 										stroke-linecap="round"
 										stroke-linejoin="round"
-										class="h-5 w-5 fill-[red]"
+										class="h-4 w-4 fill-[red]"
 									>
 										<path d="M3 6h18" />
 										<path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
