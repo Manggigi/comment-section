@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { deleteComment } from '$lib/comments';
-	import Modal from '$lib/components/Modal.svelte';
-	import PostComment from '$lib/components/PostComment.svelte';
 	import Comment from '$lib/components/Comment.svelte';
+	import PostComment from '$lib/components/PostComment.svelte';
+	import UserPost from '$lib/components/UserPost.svelte';
+	import Modal from '$lib/components/modal.svelte';
 	import { deleteReply } from '$lib/replies';
 	import { commentsData, currentUser, modalContent, showModal } from '$lib/stores';
 	import { initializeComments, initializeCurrentUser } from '$lib/utils';
 	import { onMount } from 'svelte';
-	import UserPost from '$lib/components/UserPost.svelte';
 
 	onMount(() => {
 		commentsData.set(initializeComments());
