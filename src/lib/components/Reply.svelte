@@ -38,6 +38,25 @@
 		addReply(commentId, newReply, $currentUser, replyingTo);
 		newReply = '';
 	}
+
+	let scaleUp = 1;
+	let scaleDown = 1;
+
+	function handleMouseDownUp() {
+		scaleUp = 1.5;
+	}
+
+	function handleMouseUpUp() {
+		scaleUp = 1;
+	}
+
+	function handleMouseDownDown() {
+		scaleDown = 1.5;
+	}
+
+	function handleMouseUpDown() {
+		scaleDown = 1;
+	}
 </script>
 
 <div class="bg-white p-4 rounded-lg shadow-xl">
@@ -174,6 +193,10 @@
 		<div class="flex justify-between items-center lg:items-start text-blue-600">
 			<div class="flex lg:flex-col lg:pr-4 items-center gap-6 lg:gap-2">
 				<button
+					on:mousedown={handleMouseDownUp}
+					on:mouseup={handleMouseUpUp}
+					on:touchstart={handleMouseDownUp}
+					on:touchend={handleMouseUpUp}
 					on:click={() =>
 						upvoteReply(
 							comment.id,
@@ -181,12 +204,17 @@
 							$currentUser.upvotedReplies,
 							$currentUser.downvotedReplies
 						)}
-					class="hover:text-blue-400 p-2 text-xl font-semibold lg:px-4 {$currentUser.upvotedReplies?.includes(
+					style="transform: scale({scaleUp}); transition: transform 0.1s ease-in-out;"
+					class="hover:text-red-400 active:text-red-500 p-2 text-xl font-semibold lg:px-4 {$currentUser.upvotedReplies?.includes(
 						reply.id
 					) && 'text-red-500'}">+</button
 				>
 				<div class="text-md">{reply.score}</div>
 				<button
+					on:mousedown={handleMouseDownDown}
+					on:mouseup={handleMouseUpDown}
+					on:touchstart={handleMouseDownDown}
+					on:touchend={handleMouseUpDown}
 					on:click={() =>
 						downvoteReply(
 							comment.id,
@@ -194,7 +222,8 @@
 							$currentUser.upvotedReplies,
 							$currentUser.downvotedReplies
 						)}
-					class="hover:text-blue-400 p-2 text-xl font-semibold lg:px-4 {$currentUser.downvotedReplies?.includes(
+					style="transform: scale({scaleDown}); transition: transform 0.1s ease-in-out;"
+					class="hover:text-red-400 active:text-red-500 p-2 text-xl font-semibold lg:px-4 {$currentUser.downvotedReplies?.includes(
 						reply.id
 					) && 'text-red-500'}">-</button
 				>
