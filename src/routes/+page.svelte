@@ -46,7 +46,7 @@
 
 	function handleUpdateComment(commentId: number) {
 		if (updatedCommentValue === '') return;
-		updateComment(commentId, updatedCommentValue);
+		updateComment(commentId, updatedCommentValue.trim());
 		isEditing = false;
 	}
 </script>
@@ -182,7 +182,7 @@
 									<div class="flex flex-col gap-4 items-end">
 										<textarea
 											on:keydown={(e) => {
-												if (e.key === 'Enter') {
+												if (e.key === 'Enter' && updatedCommentValue.trim()) {
 													e.preventDefault();
 													handleUpdateComment(comment.id);
 												}
@@ -194,7 +194,7 @@
 										/>
 										<button
 											type="button"
-											disabled={!updatedCommentValue}
+											disabled={!updatedCommentValue.trim()}
 											on:click={() => handleUpdateComment(comment.id)}
 											class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 										>

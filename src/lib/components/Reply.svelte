@@ -146,7 +146,7 @@
 						<textarea
 							bind:value={reply.content}
 							on:keydown={(e) => {
-								if (e.key === 'Enter') {
+								if (e.key === 'Enter' && reply.content.trim()) {
 									handleUpdateReply(comment.id, reply.id, reply.content);
 								}
 							}}
@@ -159,8 +159,8 @@
 
 						<button
 							type="button"
-							disabled={!reply.content}
-							on:click={() => handleUpdateReply(comment.id, reply.id, reply.content)}
+							disabled={!reply.content.trim()}
+							on:click={() => handleUpdateReply(comment.id, reply.id, reply.content.trim())}
 							class="rounded-md disabled:bg-neutral-300 disabled:cursor-not-allowed bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
 							Update
@@ -308,7 +308,7 @@
 			</div>
 			<button
 				type="button"
-				disabled={!newReply}
+				disabled={!newReply.trim}
 				on:click={() => handleAddReply(comment.id, reply.user.username)}
 				class="rounded-md disabled:bg-neutral-300 disabled:cursor-not-allowed bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 			>
