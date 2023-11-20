@@ -55,7 +55,7 @@
 					<button
 						on:click={closeModal}
 						type="button"
-						class="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-0 w-auto"
+						class="inline-flex justify-center rounded-md bg-neutral-100 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-0 w-auto"
 						>NO, CANCEL</button
 					>
 				</div>
