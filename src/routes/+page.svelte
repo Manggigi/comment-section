@@ -3,7 +3,7 @@
 	import PostComment from '$lib/components/PostComment.svelte';
 	import PostReply from '$lib/components/PostReply.svelte';
 	import Reply from '$lib/components/Reply.svelte';
-	import Modal from '$lib/components/modal.svelte';
+	import Modal from '$lib/components/Modal.svelte';
 
 	import { deleteReply } from '$lib/replies';
 	import { commentsData, currentUser, modalContent, showModal } from '$lib/stores';
