@@ -7,6 +7,7 @@
 	import { commentsData, currentUser, modalContent, showModal } from '$lib/stores';
 	import { initializeComments, initializeCurrentUser } from '$lib/utils';
 	import { onMount } from 'svelte';
+	import UserPost from '$lib/components/UserPost.svelte';
 
 	onMount(() => {
 		commentsData.set(initializeComments());
@@ -41,7 +42,8 @@
 	/>
 {/if}
 
-<div class="pb-12">
+<div class="py-12">
+	<UserPost />
 	<h2 class="font-semibold text-xl text-neutral-700 pt-8">Comments</h2>
 
 	<ul>
