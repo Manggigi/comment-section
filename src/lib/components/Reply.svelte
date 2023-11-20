@@ -77,28 +77,7 @@
 						<!-- if current user, show reply else edit and delete -->
 						<!-- edit and delete -->
 						{#if $currentUser.username === reply.user.username}
-							<div class="flex gap-2">
-								<button
-									on:click={() => startEditing(reply.id)}
-									class="flex items-center pr-4 text-blue-600"
-								>
-									<span class="pr-2">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 24 24"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											class="h-4 w-4 fill-[#256e3b]"
-										>
-											<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path
-												d="m15 5 4 4"
-											/>
-										</svg>
-									</span>
-									update
-								</button>
+							<div class="flex gap-4">
 								<button
 									on:click={() => {
 										currentEditingId = comment.id;
@@ -122,6 +101,27 @@
 										</svg>
 									</span>
 									delete
+								</button>
+								<button
+									on:click={() => startEditing(reply.id)}
+									class="flex items-center text-blue-600"
+								>
+									<span class="pr-2">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											class="h-4 w-4 fill-[#256e3b]"
+										>
+											<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path
+												d="m15 5 4 4"
+											/>
+										</svg>
+									</span>
+									update
 								</button>
 							</div>
 						{:else}
@@ -198,7 +198,7 @@
 			</div>
 		</div>
 		<div class="flex justify-between items-center lg:items-start text-blue-600">
-			<div class="flex lg:flex-col lg:pr-4 items-center gap-6 lg:gap-2">
+			<div class="flex lg:flex-col lg: items-center gap-6 lg:gap-2">
 				<button
 					on:mousedown={handleMouseDownUp}
 					on:mouseup={handleMouseUpUp}
@@ -216,7 +216,12 @@
 						reply.id
 					) && 'text-red-500'}">+</button
 				>
-				<div class="text-md">{reply.score}</div>
+				<div
+					style="transform: scale({scaleUp}); transition: transform 0.1s ease-in-out;"
+					class="text-md"
+				>
+					{reply.score}
+				</div>
 				<button
 					on:mousedown={handleMouseDownDown}
 					on:mouseup={handleMouseUpDown}
@@ -241,25 +246,7 @@
 					<!-- if current user, show reply else edit and delete -->
 					<!-- edit and delete -->
 					{#if $currentUser.username === reply.user.username}
-						<div class="flex gap-2">
-							<button on:click={() => startEditing(reply.id)} class="flex items-center pr-4">
-								<span class="pr-2">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										class="h-4 w-4 fill-[#256e3b]"
-									>
-										<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path
-											d="m15 5 4 4"
-										/>
-									</svg>
-								</span>
-								update
-							</button>
+						<div class="flex gap-4">
 							<button
 								on:click={() => {
 									currentEditingId = comment.id;
@@ -283,6 +270,24 @@
 									</svg>
 								</span>
 								delete
+							</button>
+							<button on:click={() => startEditing(reply.id)} class="flex items-center">
+								<span class="pr-2">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										class="h-4 w-4 fill-[#256e3b]"
+									>
+										<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path
+											d="m15 5 4 4"
+										/>
+									</svg>
+								</span>
+								update
 							</button>
 						</div>
 					{:else}
