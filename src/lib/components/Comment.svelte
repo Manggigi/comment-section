@@ -64,7 +64,14 @@
 							<img class="h-12 w-12 rounded-full" src={comment.user.image.png} alt="avatar" />
 						</a>
 						<a href="/{comment.user.username}">
-							<div class="">{comment.user.username}</div>
+							<div class="">
+								{comment.user.username}
+								{#if $currentUser.username === comment.user.username}
+									<span class="bg-indigo-700 text-white p-1 text-xs font-semibold rounded-md"
+										>YOU</span
+									>
+								{/if}
+							</div>
 						</a>
 						<div class="text-neutral-400 text-xs">{getTimeAgo(comment.createdAt)}</div>
 					</div>
@@ -186,7 +193,7 @@
 				</div>
 			</div>
 			<div class="flex justify-between items-center lg:items-start text-blue-600">
-				<div class="flex lg:flex-col lg: items-center gap-6 lg:gap-2">
+				<div class="flex pr-2 lg:flex-col lg: items-center gap-6 lg:gap-2">
 					<button
 						on:mousedown={handleMouseDownUp}
 						on:mouseup={handleMouseUpUp}
