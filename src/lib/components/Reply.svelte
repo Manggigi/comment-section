@@ -1,37 +1,28 @@
 <script lang="ts">
-	import { addReply, deleteReply, downvoteReply, updateReply, upvoteReply } from '$lib/replies';
+	import { addReply, downvoteReply, updateReply, upvoteReply } from '$lib/replies';
 	import { currentUser, modalContent, showModal } from '$lib/stores';
 	import type { Comment, Reply } from '$lib/types';
 	import { getTimeAgo } from '$lib/utils';
-	import Modal from './modal.svelte';
 
 	export let comment: Comment;
 	export let reply: Reply;
-
-	// Function to open the modal
-	function openModal() {
-		modalContent.set('delete-reply');
-		showModal.set(true);
-	}
-
-	function handleDeleteReply() {
-		deleteReply(comment.id, reply.);
-		console.log(
-			'🚀 ~ file: Reply.svelte:19 ~ handleDeleteReply ~ (comment.id, reply.id):',
-			comment.id,
-			reply.id
-		);
-	}
+	export let currentReplyingId: number;
+	export let currentEditingId: number;
 
 	let isReplying = false;
 	let newReply = '';
-
 	let isEditing = false;
 	let currentEditingReplyId: number;
 
 	function startEditing(replyId: number) {
 		currentEditingReplyId = replyId;
 		isEditing = true;
+	}
+
+	// Function to open the modal
+	function openModal() {
+		modalContent.set('delete-reply');
+		showModal.set(true);
 	}
 
 	function handleUpdateReply(commentId: number, replyId: number, updatedContent: string) {
@@ -48,14 +39,6 @@
 		newReply = '';
 	}
 </script>
-
-{#if $showModal && $modalContent == 'delete-reply'}
-	<Modal
-		title="Delete reply"
-		description="Are you sure you want to delete this reply? This will remove the reply and can't be undone."
-		deleteAction={handleDeleteReply}
-	/>
-{/if}
 
 <div class="bg-white p-4 rounded-lg shadow-xl">
 	<div class="lg:flex text-neutral-500">
@@ -90,7 +73,14 @@
 									</span>
 									update
 								</button>
-								<button on:click={openModal} class="flex items-center text-red-500">
+								<button
+									on:click={() => {
+										currentEditingId = comment.id;
+										currentReplyingId = reply.id;
+										openModal();
+									}}
+									class="flex items-center text-red-500"
+								>
 									<span class="pr-2">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -231,7 +221,14 @@
 								</span>
 								update
 							</button>
-							<button on:click={openModal} class="flex items-center text-red-500">
+							<button
+								on:click={() => {
+									currentEditingId = comment.id;
+									currentReplyingId = reply.id;
+									openModal();
+								}}
+								class="flex items-center text-red-500"
+							>
 								<span class="pr-2">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"

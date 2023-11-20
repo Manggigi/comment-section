@@ -9,7 +9,7 @@
 	import Reply from '$lib/components/Reply.svelte';
 	import Modal from '$lib/components/modal.svelte';
 
-	import { addReply } from '$lib/replies';
+	import { addReply, deleteReply } from '$lib/replies';
 	import { commentsData, currentUser, modalContent, showModal } from '$lib/stores';
 	import { receive, send } from '$lib/transitions';
 	import { getTimeAgo, initializeComments, initializeCurrentUser } from '$lib/utils';
@@ -28,6 +28,7 @@
 	let isReplying = false;
 	let isEditing = false;
 	let currentEditingId: number;
+	let currentReplyingId: number;
 
 	// Function to open the modal
 	function openModal() {
@@ -37,6 +38,15 @@
 
 	function handleDeleteComment() {
 		deleteComment(currentEditingId);
+	}
+
+	function handleDeleteReply() {
+		deleteReply(currentEditingId, currentReplyingId);
+		console.log(
+			'🚀 ~ file: +page.svelte:45 ~ handleDeleteReply ~ currentEditingId, currentReplyingId:',
+			currentEditingId,
+			currentReplyingId
+		);
 	}
 
 	function startEditing(commentId: number, updatedContent: string) {
@@ -65,6 +75,14 @@
 		title="Delete comment"
 		description="Are you sure you want to delete this comment? This will remove the comment and can't be undone."
 		deleteAction={handleDeleteComment}
+	/>
+{/if}
+
+{#if $showModal && $modalContent === 'delete-reply'}
+	<Modal
+		title="Delete reply"
+		description="Are you sure you want to delete this reply? This will remove the reply and can't be undone."
+		deleteAction={handleDeleteReply}
 	/>
 {/if}
 
@@ -371,7 +389,7 @@
 							animate:flip={{ duration: 200 }}
 						>
 							{#if comment.replies.length > 0}
-								<Reply {comment} {reply} />
+								<Reply {comment} {reply} bind:currentReplyingId bind:currentEditingId />
 							{/if}
 						</li>
 					{/each}
