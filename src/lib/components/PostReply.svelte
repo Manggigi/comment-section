@@ -9,7 +9,7 @@
 
 	const handleAddReply = () => {
 		if (newReply === '') return;
-		addReply(comment.id, newReply, $currentUser, '');
+		addReply(comment.id, newReply.trim(), $currentUser, '');
 		newReply = '';
 	};
 </script>
@@ -21,7 +21,7 @@
 		<textarea
 			bind:value={newReply}
 			on:keydown={(e) => {
-				if (e.key === 'Enter') {
+				if (e.key === 'Enter' && newReply.trim()) {
 					e.preventDefault();
 					handleAddReply();
 				}
@@ -33,7 +33,7 @@
 	</div>
 	<button
 		type="button"
-		disabled={!newReply}
+		disabled={!newReply.trim()}
 		on:click={handleAddReply}
 		class="rounded-md disabled:bg-neutral-300 disabled:cursor-not-allowed bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 	>

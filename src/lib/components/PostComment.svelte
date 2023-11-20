@@ -42,12 +42,14 @@
 		</div>
 		<button
 			type="button"
-			disabled={!newComment}
+			disabled={!newComment.trim()}
 			on:click={() => {
-				addComment(newComment, $currentUser);
+				const trimmedComment = newComment.trim();
+				if (trimmedComment === '') return;
+				addComment(trimmedComment, $currentUser);
 				newComment = '';
 			}}
-			class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+			class="rounded-md disabled:bg-neutral-300 disabled:cursor-not-allowed bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 		>
 			Send
 		</button>
