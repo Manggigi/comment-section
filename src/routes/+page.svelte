@@ -43,14 +43,14 @@
 {/if}
 
 <div class="py-12">
+	<h2 class="font-semibold text-xl text-neutral-700 pb-2">Sample Post</h2>
 	<UserPost />
-	<h2 class="font-semibold text-xl text-neutral-700 pt-8">Comments</h2>
 
+	<h2 class="font-semibold text-xl text-neutral-700 pt-8">Comments</h2>
 	<ul>
 		{#each $commentsData?.sort((a, b) => b.score - a.score) as comment (comment.id)}
 			<Comment {comment} bind:currentEditingId bind:currentReplyingId />
 		{/each}
 	</ul>
-
 	<PostComment />
 </div>
