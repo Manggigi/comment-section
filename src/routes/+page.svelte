@@ -6,6 +6,7 @@
 		updateComment,
 		upvoteComment
 	} from '$lib/comments';
+	import PostComment from '$lib/components/PostComment.svelte';
 	import Reply from '$lib/components/Reply.svelte';
 	import Modal from '$lib/components/modal.svelte';
 
@@ -86,8 +87,8 @@
 	/>
 {/if}
 
-<div class="mb-12">
-	<h2 class="font-semibold text-xl mt-8">Comments</h2>
+<div class="pb-12">
+	<h2 class="font-semibold text-xl text-neutral-700 pt-8">Comments</h2>
 
 	<ul>
 		{#each $commentsData?.sort((a, b) => b.score - a.score) as comment (comment.id)}
@@ -399,37 +400,5 @@
 	</ul>
 
 	<!-- Add a comment box -->
-	<div
-		class="flex flex-wrap items-start gap-4 p-4 mt-8 bg-white rounded-lg text-blue-600 shadow-xl"
-	>
-		<img src={$currentUser.image.png} alt="avatar" class="h-12 w-12 rounded-full" />
-
-		<div class="flex-grow relative order-first lg:order-none">
-			<label
-				for="comment"
-				class="block absolute -translate-y-4 bg-white px-2 top-1 left-2 z-10 text-xs font-medium leading-6 text-gray-400"
-			>
-				Add a comment
-			</label>
-			<textarea
-				bind:value={newComment}
-				rows="4"
-				name="comment"
-				id="comment"
-				placeholder="Add a comment..."
-				class="p-4 relative block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-			/>
-		</div>
-		<button
-			type="button"
-			disabled={!newComment}
-			on:click={() => {
-				addComment(newComment, $currentUser);
-				newComment = '';
-			}}
-			class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-		>
-			Send
-		</button>
-	</div>
+	<PostComment />
 </div>
