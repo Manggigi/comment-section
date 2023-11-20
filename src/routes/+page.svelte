@@ -49,6 +49,25 @@
 		updateComment(commentId, updatedCommentValue.trim());
 		isEditing = false;
 	}
+
+	let scaleUp = 1;
+	let scaleDown = 1;
+
+	function handleMouseDownUp() {
+		scaleUp = 1.5;
+	}
+
+	function handleMouseUpUp() {
+		scaleUp = 1;
+	}
+
+	function handleMouseDownDown() {
+		scaleDown = 1.5;
+	}
+
+	function handleMouseUpDown() {
+		scaleDown = 1;
+	}
 </script>
 
 {#if $showModal && $modalContent == 'delete-comment'}
@@ -209,25 +228,35 @@
 						<div class="flex justify-between items-center lg:items-start text-blue-600">
 							<div class="flex lg:flex-col lg:pr-4 items-center gap-6 lg:gap-2">
 								<button
+									on:mousedown={handleMouseDownUp}
+									on:mouseup={handleMouseUpUp}
+									on:touchstart={handleMouseDownUp}
+									on:touchend={handleMouseUpUp}
 									on:click={() =>
 										upvoteComment(
 											comment.id,
 											$currentUser.upvotedComments,
 											$currentUser.downvotedComments
 										)}
-									class="hover:text-blue-400 p-2 text-xl font-semibold lg:px-4 {$currentUser.upvotedComments?.includes(
+									style="transform: scale({scaleUp}); transition: transform 0.1s ease-in-out;"
+									class="hover:text-red-400 active:text-red-500 p-2 text-xl font-semibold lg:px-4 {$currentUser.upvotedComments?.includes(
 										comment.id
 									) && 'text-red-500'}">+</button
 								>
 								<div class="text-md">{comment.score}</div>
 								<button
+									on:mousedown={handleMouseDownDown}
+									on:mouseup={handleMouseUpDown}
+									on:touchstart={handleMouseDownDown}
+									on:touchend={handleMouseUpDown}
 									on:click={() =>
 										downvoteComment(
 											comment.id,
 											$currentUser.upvotedComments,
 											$currentUser.downvotedComments
 										)}
-									class="hover:text-blue-400 p-2 text-xl font-semibold lg:px-4 {$currentUser.downvotedComments?.includes(
+									style="transform: scale({scaleDown}); transition: transform 0.1s ease-in-out;"
+									class="hover:text-red-400 active:text-red-500 p-2 text-xl font-semibold lg:px-4 {$currentUser.downvotedComments?.includes(
 										comment.id
 									) && 'text-red-500'}">-</button
 								>
