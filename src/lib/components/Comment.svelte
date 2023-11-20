@@ -60,8 +60,12 @@
 			<div class="lg:order-1 w-full">
 				<div class="flex items-center justify-between">
 					<div class="flex items-center gap-3">
-						<img class="h-12 w-12 rounded-full" src={comment.user.image.png} alt="avatar" />
-						<div class="">{comment.user.username}</div>
+						<a href="/{comment.user.username}">
+							<img class="h-12 w-12 rounded-full" src={comment.user.image.png} alt="avatar" />
+						</a>
+						<a href="/{comment.user.username}">
+							<div class="">{comment.user.username}</div>
+						</a>
 						<div class="text-neutral-400 text-xs">{getTimeAgo(comment.createdAt)}</div>
 					</div>
 					<div class="hidden lg:block">

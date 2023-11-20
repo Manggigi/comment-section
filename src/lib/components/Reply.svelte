@@ -64,8 +64,12 @@
 		<div class="lg:order-1 w-full">
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-2">
-					<img class="h-12 w-12 rounded-full" src={reply.user.image.png} alt="avatar" />
-					<div class="">{reply.user.username}</div>
+					<a href="/{reply.user.username}">
+						<img class="h-12 w-12 rounded-full" src={reply.user.image.png} alt="avatar" />
+					</a>
+					<a href="/{reply.user.username}">
+						<div class="">{reply.user.username}</div>
+					</a>
 					<div class="text-neutral-400 text-xs">{getTimeAgo(reply.createdAt)}</div>
 				</div>
 				<div class="hidden lg:block">
@@ -186,7 +190,10 @@
 						</button>
 					</div>
 				{:else}
-					<div><a href="/" class="text-blue-400">@{reply.replyingTo}</a> {reply.content}</div>
+					<div>
+						<a href="/{reply.replyingTo}" class="text-blue-400">@{reply.replyingTo}</a>
+						{reply.content}
+					</div>
 				{/if}
 			</div>
 		</div>
