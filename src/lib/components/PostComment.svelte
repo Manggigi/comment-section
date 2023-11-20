@@ -27,7 +27,7 @@
 		<div class="relative flex-grow px-4 hidden lg:block">
 			<label
 				for="comment"
-				class="block absolute -translate-y-4 bg-white px-2 top-1 left-2 z-10 text-xs font-medium leading-6 text-gray-400"
+				class="block absolute -translate-y-4 bg-white px-2 lg:ml-6 top-1 left-2 z-10 text-xs font-medium leading-6 text-gray-400"
 			>
 				Add a comment
 			</label>
